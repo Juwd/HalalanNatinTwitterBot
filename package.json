@@ -1,0 +1,16 @@
+{
+  "name": "twitbot",
+  "version": "1.0.0",
+  "description": "Twitter bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HatJohd",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^9.0.2",
+    "twit": "^2.2.11"
+  }
+}
