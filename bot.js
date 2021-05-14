@@ -1,8 +1,10 @@
 console.log('start')
 require('dotenv').config()
-
-var Twit = require('twit');
-
+const axios = require('axios');
+const Twit = require('twit');
+const cloudinary = require('./cloudinary');
+const fs =require('fs');
+const { type } = require('os');
 var T = new Twit({
     consumer_key:         process.env.consumer_key,
     consumer_secret:      process.env.consumer_secret,
@@ -91,9 +93,46 @@ function timeRemainingRegistration(){
             }
 
 //for posting Pubs
-function choosePub(){
-    //here is the list of pubs to choose from
+function choosePub(whichPub){
+  try {
+      //just put a randomizer number
+      const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png"]
+      const alternateText=["ElectionSchedule"]
+      const captions=['2022 Election schedule for the Philippines #HalalanNatin']  
+      axios({
+            method: 'get',
+            url: urlPub[whichPub],
+            responseType: 'stream'
+          }).then(function (response) {
+            response.data.pipe(fs.createWriteStream('temp.png'))
+            });
+        const b64= fs.readFileSync('temp.png',{encoding:'base64'})
+
+        T.post('media/upload', { media_data: b64 }, function (err, data, response) {
+        // now we can assign alt text to the media, for use by screen readers and
+        // other text-based presentations and interpreters
+        var mediaIdStr = data.media_id_string
+        var altText = alternateText[whichPub]
+        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+    
+        T.post('media/metadata/create', meta_params, function (err, data, response) {
+        if (!err) {
+            // now we can reference the media and post a tweet (media will attach to the tweet)
+            var params = { status: captions[whichPub], media_ids: [mediaIdStr] }
+    
+            T.post('statuses/update', params, function (err, data, response) {console.log(data)})
+        }
+        else {
+            console.log(err)
+        }
+            })
+        })
+    } catch (error){
+        console.log(error)
+    }
+ 
 }
+
  //for posting tweets
 function tweetIt(tweetStatus){
     
@@ -122,6 +161,7 @@ function tweetIt(tweetStatus){
 
 function cmndCntrl() {
     // timeRemainingRegistration();
+    var whichPub=math.random()*10;
     var timeToTweetRegistration = new Date();
     console.log(timeToTweetRegistration.getHours())
     if(timeToTweetRegistration.getHours() == "8")
@@ -130,8 +170,14 @@ function cmndCntrl() {
         }
     if(timeToTweetRegistration.getHours() == "9")
         {
-        tweetIt(timeRemainingRegistration());
+        tweetIt(timeRemainingElection());
+        }
+    if(whichPub===0)
+        {
+            choosePub(whichPub);
         }
 }
+
+
 setInterval(cmndCntrl, 1000*60*60)
 

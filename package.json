@@ -10,6 +10,8 @@
   "author": "HatJohd",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "cloudinary": "^1.25.1",
     "dotenv": "^9.0.2",
     "twit": "^2.2.11"
   }
