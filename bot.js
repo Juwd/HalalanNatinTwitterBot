@@ -167,13 +167,15 @@ function cmndCntrl() {
     console.log(timeToTweetRegistration.getHours())
     if(timeToTweetRegistration.getHours() == "8")
         {
+        console.log("i tweet registration")
         tweetIt(timeRemainingRegistration());
         }
-    if(timeToTweetRegistration.getHours() == "9")
+    else if(timeToTweetRegistration.getHours() == "9")
         {
+        console.log("i tweet election")
         tweetIt(timeRemainingElection());
         }
-    if(whichPub===0)
+    else if(whichPub===0)
         {
             choosePub(whichPub);
         }
