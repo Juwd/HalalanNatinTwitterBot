@@ -161,8 +161,9 @@ function tweetIt(tweetStatus){
 
 function cmndCntrl() {
     // timeRemainingRegistration();
-    var whichPub=math.random()*10;
+    var whichPub=Math.floor(Math.random()*10);
     var timeToTweetRegistration = new Date();
+    console.log("which pub?" + whichPub)
     console.log(timeToTweetRegistration.getHours())
     if(timeToTweetRegistration.getHours() == "8")
         {
@@ -177,7 +178,6 @@ function cmndCntrl() {
             choosePub(whichPub);
         }
 }
-
 
 setInterval(cmndCntrl, 1000*60*60)
 
