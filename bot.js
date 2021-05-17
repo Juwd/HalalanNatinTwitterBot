@@ -83,7 +83,7 @@ function timeRemainingRegistration(){
     var Final_Result = Result.toFixed(0);
       
     //To display the final_result value
-    tweetStatus="Number of days remaining till "+ registration_day.getMonth() +"/"+registration_day.getDate() + "/" + registration_day.getFullYear() + " Registration period for both overseas and local voters is" 
+    tweetStatus="Number of days remaining till "+ registration_day.getMonth() +"/"+registration_day.getDate() + "/" + registration_day.getFullYear() + " Registration period for both overseas and local voters is " 
     + Final_Result;
 
     console.log(tweetStatus);
