@@ -167,8 +167,12 @@ function cmndCntrl() {
     console.log(timeToTweetRegistration.getHours())
     if(timeToTweetRegistration.getHours() == "8")
         {
-        console.log("i tweet registration")
-        tweetIt(timeRemainingRegistration());
+            var registration_day = new Date(2021, 9, 30)
+            if(timeToTweetRegistration <= registration_day)
+            {
+            console.log("i tweet registration")
+            tweetIt(timeRemainingRegistration());
+            }
         }
     else if(timeToTweetRegistration.getHours() == "9")
         {
