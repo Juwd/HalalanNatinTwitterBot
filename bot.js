@@ -98,7 +98,7 @@ function choosePub(whichPub){
       //just put a randomizer number
       const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png"]
       const alternateText=["ElectionSchedule"]
-      const captions=['2022 Election schedule for the Philippines #HalalanNatin']  
+      const captions=['2022 Election schedule for the Philippines #HalalanNatin #Halalan2022']  
       axios({
             method: 'get',
             url: urlPub[whichPub],
@@ -137,7 +137,7 @@ function choosePub(whichPub){
 function tweetIt(tweetStatus){
     
     var tweet = {
-        status: tweetStatus + ' #HalalanNatin'
+        status: tweetStatus + ' #HalalanNatin #Halalan2022'
     }
 
     T.post('statuses/update', tweet, function(err, data, response) {
