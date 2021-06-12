@@ -96,9 +96,30 @@ function timeRemainingRegistration(){
 function choosePub(whichPub){
   try {
       //just put a randomizer number
-      const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png"]
-      const alternateText=["ElectionSchedule"]
-      const captions=['2022 Election schedule for the Philippines #HalalanNatin #Halalan2022']  
+      const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png", 
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_1_sfcfi4.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_2_l4exdr.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_3_quimqk.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_4_vcx2up.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_5_jraxos.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_1_Final_bfldeo.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_2_Final_en2cxq.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_3_Final_l5wf40.png"
+
+     ]
+      const alternateText=["ElectionSchedule","Importance of Voting 1", "Importance of Voting 2", "Importance of Voting 3", "Importance of Voting 4", "Importance of Voting 5", "Qualifications of Voting 1","Qualifications of Voting 2"
+      ,"Qualifications of Voting 3"]
+      var captions=['2022 Election schedule for the Philippines #HalalanNatin #Halalan2022',
+                    'Bakit kailangan kong bumoto? Ang pagboto ay isa sa pinakamakapangyarihang karapatan na pinaghirapang makamit ng ating mga ninuno.',
+                    'Sinong may sabing walang magagawa boto mo?',
+                    'Ilang ba ang bumoto sa nakaraan na eleksyon?',
+                    'Marami na ba ang nakapag rehistro para sa halalan 2022?',
+                    'May pandemya ngayon, pwede kaya akong magparehistro nang hindi lumalabas ng bahay?',
+                    'Kwalipikado ba ako maging botante?',
+                    'Anung kailangan na dokumento para makarehistro?',
+                    'Maging handa sa pag rerehistro!']  
+      caption=captions[whichPub] + " Halina sa https://www.facebook.com/Uy-Boboto-Ka-Ba-108276488125329 para sa mga karagdagang impormasyon tungkol sa #Halalan2022 #HalalanNatin"
+      
       axios({
             method: 'get',
             url: urlPub[whichPub],
@@ -118,7 +139,7 @@ function choosePub(whichPub){
         T.post('media/metadata/create', meta_params, function (err, data, response) {
         if (!err) {
             // now we can reference the media and post a tweet (media will attach to the tweet)
-            var params = { status: captions[whichPub], media_ids: [mediaIdStr] }
+            var params = { status: caption, media_ids: [mediaIdStr] }
     
             T.post('statuses/update', params, function (err, data, response) {console.log(data)})
         }
@@ -161,7 +182,7 @@ function tweetIt(tweetStatus){
 
 function cmndCntrl() {
     // timeRemainingRegistration();
-    var whichPub=Math.floor(Math.random()*10);
+    var whichPub=Math.floor(Math.random()*20);
     var timeToTweetRegistration = new Date();
     console.log("which pub?" + whichPub)
     console.log(timeToTweetRegistration.getHours())
