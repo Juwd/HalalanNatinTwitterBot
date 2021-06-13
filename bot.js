@@ -200,7 +200,7 @@ function cmndCntrl() {
         console.log("i tweet election")
         tweetIt(timeRemainingElection());
         }
-    else if(whichPub===0)
+    else if(whichPub<10)
         {
             choosePub(whichPub);
         }
