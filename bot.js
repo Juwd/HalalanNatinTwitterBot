@@ -12,7 +12,7 @@ var T = new Twit({
     access_token_secret: process.env.access_token_secret
     //timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
   })
-
+var b64='';
 
 
 //For getting the tweets
@@ -92,11 +92,9 @@ function timeRemainingRegistration(){
     return tweetStatus
             }
 
-//for posting Pubs
-function choosePub(whichPub){
-  try {
-      //just put a randomizer number
-      const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png", 
+//for getting pub axios
+function getPub(whichPub,callback){
+    const urlPub=["https://res.cloudinary.com/halalanprompts/image/upload/v1620820538/Prompts/Schedule_bgr9g7.png", 
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_1_sfcfi4.png",
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_2_l4exdr.png",
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_3_quimqk.png",
@@ -104,12 +102,51 @@ function choosePub(whichPub){
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623481996/Prompts/Importance_5_jraxos.png",
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_1_Final_bfldeo.png",
       "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_2_Final_en2cxq.png",
-      "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_3_Final_l5wf40.png"
-
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1623484201/Prompts/Pub_3_Final_l5wf40.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625150669/Prompts/Register_1_cgc62l.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625154052/Prompts/SpecialCase_2_szgokl.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625154391/Prompts/SpecialCase_3_a1qg9p.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625154450/Prompts/SpecialCase_4_ljnubn.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625154555/Prompts/SpecialCase_5_lfv4zk.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625156533/Prompts/Do_s_Don_ts_1_qxjvw7.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625157462/Prompts/Do_s_Don_ts_2_zph5gp.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625157888/Prompts/Do_s_Don_ts_3_vpllpk.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625157948/Prompts/Do_s_Don_ts_4_jxhbeg.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158006/Prompts/Do_s_Don_ts_5_doxzjb.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158133/Prompts/Do_s_Don_ts_6_ee8ttq.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158319/Prompts/Do_s_Don_ts_7_xdehe7.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158420/Prompts/Do_s_Don_ts_8_ygf2f9.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158545/Prompts/Do_s_Don_ts_9_ka8er7.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158652/Prompts/Do_s_Don_ts_10_i5cjb6.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158818/Prompts/Do_s_Don_ts_11_rlt509.png",
+      "https://res.cloudinary.com/halalanprompts/image/upload/v1625158818/Prompts/Do_s_Don_ts_12_rlt509.png"
      ]
-      const alternateText=["ElectionSchedule","Importance of Voting 1", "Importance of Voting 2", "Importance of Voting 3", "Importance of Voting 4", "Importance of Voting 5", "Qualifications of Voting 1","Qualifications of Voting 2"
-      ,"Qualifications of Voting 3"]
-      var captions=['2022 Election schedule for the Philippines #HalalanNatin #Halalan2022',
+    axios({
+        method: 'get',
+        url: urlPub[whichPub],
+        responseType: 'stream'
+      }).then(function (response) {
+        const stream = fs.createWriteStream("temp.png");
+        response.data.pipe(stream);
+        stream.on('close',()=>{
+            choosePub(whichPub)
+        })    
+    });
+}
+
+//for posting Pubs
+function choosePub(whichPub){
+  try {
+      //just put a randomizer number
+      const alternateText=["ElectionSchedule","Importance of Voting 1", 
+      "Importance of Voting 2", "Importance of Voting 3", 
+      "Importance of Voting 4", "Importance of Voting 5", 
+      "Qualifications of Voting 1","Qualifications of Voting 2"
+      ,"Qualifications of Voting 3", "Steps on Voting", 
+        "Special cases", "Special case 1", "Special case 2", "Special case 3",
+        "Do's 1", "Do's 2", "Do's 3", "Do's 4", "Do's 5", "Do's 6", "Dont's 7", "Dont's 8",
+        "Dont's 9", "Dont's 10", "Dont's 11", "Dont's 12"]
+      const captions=['2022 Election schedule for the Philippines #HalalanNatin #Halalan2022',
                     'Bakit kailangan kong bumoto? Ang pagboto ay isa sa pinakamakapangyarihang karapatan na pinaghirapang makamit ng ating mga ninuno.',
                     'Sinong may sabing walang magagawa boto mo?',
                     'Ilang ba ang bumoto sa nakaraan na eleksyon?',
@@ -117,37 +154,52 @@ function choosePub(whichPub){
                     'May pandemya ngayon, pwede kaya akong magparehistro nang hindi lumalabas ng bahay?',
                     'Kwalipikado ba ako maging botante?',
                     'Anung kailangan na dokumento para makarehistro?',
-                    'Maging handa sa pag rerehistro!']  
-      caption=captions[whichPub] + " Halina sa https://www.facebook.com/Uy-Boboto-Ka-Ba-108276488125329 para sa mga karagdagang impormasyon tungkol sa #Halalan2022 #HalalanNatin"
-      
-      axios({
-            method: 'get',
-            url: urlPub[whichPub],
-            responseType: 'stream'
-          }).then(function (response) {
-            response.data.pipe(fs.createWriteStream('temp.png'))
-            });
-        const b64= fs.readFileSync('temp.png',{encoding:'base64'})
-
-        T.post('media/upload', { media_data: b64 }, function (err, data, response) {
-        // now we can assign alt text to the media, for use by screen readers and
-        // other text-based presentations and interpreters
-        var mediaIdStr = data.media_id_string
-        var altText = alternateText[whichPub]
-        var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
-    
-        T.post('media/metadata/create', meta_params, function (err, data, response) {
-        if (!err) {
-            // now we can reference the media and post a tweet (media will attach to the tweet)
-            var params = { status: caption, media_ids: [mediaIdStr] }
-    
-            T.post('statuses/update', params, function (err, data, response) {console.log(data)})
-        }
-        else {
-            console.log(err)
-        }
-            })
-        })
+                    'Maging handa sa pag rerehistro!',
+                    'Alamin ang mga hakbang sa pag rehistro!',
+                    'Kasama ka ba sa mga espesyal na kaso?',
+                    'Paano kung gusto mo mag palipat ng Registration Record?',
+                    'Paano kung gusto mo mag pa reactivate ng Registration Record?',
+                    'Paano kung nag palit ka ng pangalan?',
+                    'Mga dapat gawin sa pagboto',
+                    'Huwag basta basta maniwala sa iba, Magsaliksik!',
+                    'Ito ang exam na ok lang may kodigo!',
+                    'Boto para sa Pilipinas! Maigi ay palagi tayong ligtas',
+                    'Mas kanais nais kapag malinis, upang siguradong pasok ang iyong boto',
+                    "Kapwa Pilipino lang tayo nag nanais ng pagbabago, kung kaya't wag kang matakot mag tanong",
+                    'Mga di dapat gawin sa pagboto',
+                    'Sandalian lang ang pagboto, huwag gamitin ang iyong mobile phone sa presinto',
+                    'May tamang araw at lugar ng pangangampanya',
+                    'Huwag ipakita ang iyong balota at huwag kunan to ng litrato',
+                    'Sa iyo yung pagboto, hindi sa kanila.',
+                    'Ok lang mag undervote pero wag lang mag over vote'
+                    ]  
+    //   axios({
+    //         method: 'get',
+    //         url: urlPub[whichPub],
+    //         responseType: 'stream'
+    //       }).then(function (response) {
+    //         response.data.pipe(fs.createWriteStream('temp.png'))
+    //         });
+            b64= fs.readFileSync('temp.png',{encoding:'base64'})
+            T.post('media/upload', { media_data: b64 }, function (err, data, response) {
+                // now we can assign alt text to the media, for use by screen readers and
+                // other text-based presentations and interpreters
+                var mediaIdStr = data.media_id_string
+                var altText = alternateText[whichPub]
+                var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+            
+                T.post('media/metadata/create', meta_params, function (err, data, response) {
+                if (!err) {
+                    // now we can reference the media and post a tweet (media will attach to the tweet)
+                    var params = { status: captions[whichPub] + ' Halina sa https://www.facebook.com/Uy-Boboto-Ka-Ba-108276488125329 para sa mga karagdagang impormasyon tungkol sa #Halalan2022 #HalalanNatin', media_ids: [mediaIdStr] }
+            
+                    T.post('statuses/update', params, function (err, data, response) {console.log(data)})
+                }
+                else {
+                    console.log(err)
+                }
+                    })
+                })
     } catch (error){
         console.log(error)
     }
@@ -182,7 +234,7 @@ function tweetIt(tweetStatus){
 
 function cmndCntrl() {
     // timeRemainingRegistration();
-    var whichPub=Math.floor(Math.random()*20);
+    var whichPub=Math.floor(Math.random()*50);
     var timeToTweetRegistration = new Date();
     console.log("which pub?" + whichPub)
     console.log(timeToTweetRegistration.getHours())
@@ -200,11 +252,12 @@ function cmndCntrl() {
         console.log("i tweet election")
         tweetIt(timeRemainingElection());
         }
-    else if(whichPub<10)
+    else if(whichPub<26)
         {
-            choosePub(whichPub);
+            getPub(whichPub)
+            //try callback pub
         }
-}
+} 
 
 setInterval(cmndCntrl, 1000*60*60)
 
