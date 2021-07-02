@@ -259,5 +259,5 @@ function cmndCntrl() {
         }
 } 
 
-setInterval(cmndCntrl, 1000*60*60)
+//setInterval(cmndCntrl, 1000*60*60)
 
