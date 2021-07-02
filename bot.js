@@ -15,9 +15,9 @@ var T = new Twit({
   })
 var b64='';
 
-
-//For getting the tweets
-  var params ={
+app.get('/', (req, res) => {
+    //For getting the tweets
+var params ={
     q:'Laban Pilipinas since:2021-05-11',//queries
     count:2//howmany
 }
@@ -259,6 +259,8 @@ function cmndCntrl() {
             //try callback pub
         }
 } 
+    
+})
 
 const port = process.env.PORT || 5000;
 
