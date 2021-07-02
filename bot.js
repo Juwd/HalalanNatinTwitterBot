@@ -259,7 +259,8 @@ function cmndCntrl() {
             getPub(whichPub)
             //try callback pub
         }
-} 
+}
+cmndCntrl();
 res.send("success");    
 })
 
