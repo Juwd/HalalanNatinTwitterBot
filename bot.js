@@ -1,5 +1,6 @@
 console.log('start')
 require('dotenv').config()
+const app = express();
 const axios = require('axios');
 const Twit = require('twit');
 const cloudinary = require('./cloudinary');
@@ -259,5 +260,8 @@ function cmndCntrl() {
         }
 } 
 
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
 //setInterval(cmndCntrl, 1000*60*60)
 
