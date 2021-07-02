@@ -260,7 +260,7 @@ function cmndCntrl() {
             //try callback pub
         }
 } 
-    
+res.send("success");    
 })
 
 const port = process.env.PORT || 5000;
