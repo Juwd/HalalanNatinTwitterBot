@@ -236,7 +236,7 @@ function tweetIt(tweetStatus){
 
 function cmndCntrl() {
     // timeRemainingRegistration();
-    var whichPub=Math.floor(Math.random()*50);
+    var whichPub=Math.floor(Math.random()*90);
     var timeToTweetRegistration = new Date();
     console.log("which pub?" + whichPub)
     console.log(timeToTweetRegistration.getHours())
