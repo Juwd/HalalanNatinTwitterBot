@@ -1,7 +1,7 @@
-const express = require('express');
+//const express = require('express');
 console.log('start')
 require('dotenv').config()
-const app = express();
+//const app = express();
 const axios = require('axios');
 const Twit = require('twit');
 const cloudinary = require('./cloudinary');
@@ -16,7 +16,7 @@ var T = new Twit({
   })
 var b64='';
 
-app.get('/', (req, res) => {
+//app.get('/', (req, res) => {
     //For getting the tweets
 var params ={
     q:'Laban Pilipinas since:2021-05-11',//queries
@@ -260,12 +260,12 @@ function cmndCntrl() {
             //try callback pub
         }
 }
-cmndCntrl();
-res.send("success");    
-})
+//cmndCntrl();
+//res.send("success");    
+//})
 
-const port = process.env.PORT || 5000;
+//const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
-//setInterval(cmndCntrl, 1000*60*60)
+//app.listen(port, () => console.log(`Server started on port ${port}`));
+setInterval(cmndCntrl, 1000*60*60)
 
