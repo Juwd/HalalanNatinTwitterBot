@@ -79,8 +79,7 @@ function timeRemainingRegistration(){
     //     election_day.setFullYear(election_day.getFullYear() + 6)
       
     // To Calculate the result in milliseconds and then converting into days
-    var Result = Math.round(registration_day.getTime() - present_date.getTime()) / (one_day);
-      
+    var Result = (Math.round(registration_day.getTime() - present_date.getTime()) / (one_day))-29;
     // To remove the decimals from the (Result) resulting days value
     var Final_Result = Result.toFixed(0);
       
@@ -267,5 +266,5 @@ function cmndCntrl() {
 //const port = process.env.PORT || 5000;
 
 //app.listen(port, () => console.log(`Server started on port ${port}`));
-setInterval(cmndCntrl, 1000*60*60)
-
+//setInterval(cmndCntrl, 1000*60*60)
+timeRemainingRegistration()
