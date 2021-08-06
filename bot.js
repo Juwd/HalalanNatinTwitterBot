@@ -266,5 +266,5 @@ function cmndCntrl() {
 //const port = process.env.PORT || 5000;
 
 //app.listen(port, () => console.log(`Server started on port ${port}`));
-//setInterval(cmndCntrl, 1000*60*60)
-timeRemainingRegistration()
+setInterval(cmndCntrl, 1000*60*60)
+//timeRemainingRegistration()
