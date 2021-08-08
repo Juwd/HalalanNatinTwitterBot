@@ -79,7 +79,7 @@ function timeRemainingRegistration(){
     //     election_day.setFullYear(election_day.getFullYear() + 6)
       
     // To Calculate the result in milliseconds and then converting into days
-    var Result = (Math.round(registration_day.getTime() - present_date.getTime()) / (one_day))-29;
+    var Result = (Math.round(registration_day.getTime() - present_date.getTime()) / (one_day))-30;
     // To remove the decimals from the (Result) resulting days value
     var Final_Result = Result.toFixed(0);
       
