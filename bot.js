@@ -72,7 +72,7 @@ function timeRemainingRegistration(){
     var present_date = new Date();
       
     // 0-11 is Month in JavaScript
-    var registration_day = new Date(2021, 9, 30)
+    var registration_day = new Date(2021, 10, 31)
       
     // To Calculate next Hallalan if passed already.
     // if (present_date.getMonth() == 9 && present_date.getdate() > 30)
@@ -84,7 +84,7 @@ function timeRemainingRegistration(){
     var Final_Result = Result.toFixed(0);
       
     //To display the final_result value
-    tweetStatus="Number of days remaining till "+ registration_day.getMonth() +"/"+registration_day.getDate() + "/" + registration_day.getFullYear() + " Registration period for both overseas and local voters is " 
+    tweetStatus="[UPDATED] Number of days remaining till "+ registration_day.getMonth() +"/"+registration_day.getDate() + "/" + registration_day.getFullYear() + " Registration period for both overseas and local voters is " 
     + Final_Result;
 
     console.log(tweetStatus);
